@@ -1,0 +1,47 @@
+.nutrient{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+    padding: 1rem;
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 6px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    &__info h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    &__info p {
+        margin: 0;
+        padding: 0;
+        color: #74798c;
+    }
+    
+}
+
+.caloriesIcon {
+   background-color: #fbeaea;
+}
+
+.proteinIcon {
+   background-color: #e9f4fb;
+}
+
+.carbsIcon {
+   background-color: #fbf6e5;
+}
+
+.fatIcon {
+   background-color: #fbeaef;
+}

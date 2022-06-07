@@ -1,0 +1,15 @@
+.dailyActivity{
+    grid-area: dailyActivity;
+    background: #FBFBFB;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    & figure {
+        margin: 0;
+        padding: 0;
+    }
+
+    &__value {
+        font-size: 14px;
+    }
+}

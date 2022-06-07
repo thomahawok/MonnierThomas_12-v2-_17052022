@@ -1,0 +1,28 @@
+.sideNav {
+    grid-area: sideNav;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+    &__link {
+      padding-bottom: 20px;
+      &:hover {
+        transform: scale(1.05);
+        }
+    }
+
+    & img {
+        width: 90%;
+        height: auto; 
+    }
+
+    & p {
+        writing-mode: vertical-lr;
+        transform: rotate(-180deg);
+        font-size: 12px;
+        padding-bottom: 20px;
+    }
+  }

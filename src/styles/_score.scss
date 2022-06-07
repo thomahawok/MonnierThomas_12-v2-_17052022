@@ -1,0 +1,9 @@
+.score {
+    grid-area: score;
+    background: #FBFBFB;
+
+    & figure {
+        margin: 0;
+        padding: 0;
+    }
+}
