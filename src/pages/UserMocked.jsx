@@ -8,20 +8,24 @@ import Perform from '../components/Perform'
 import Score from '../components/Score'
 import Nutrients from '../components/Nutrients'
 
-import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../datas/mockedUsersDatas'
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from '../datas/mockedUsersDatas'
 /**
  * MOKED USER PAGE
  * @returns {JSX}
  */
 function UserMocked() {
-
-  const {id} = useParams()
+  const { id } = useParams()
   const idNum = parseInt(id, 10)
 
   const user = USER_MAIN_DATA.findIndex(function (item) {
     return idNum === item.id
   })
-console.log(user)
+  console.log(user)
   const userFirstName = USER_MAIN_DATA[user].userInfos.firstName
   const userActivity = USER_ACTIVITY[user].sessions
   const userSessionAverage = USER_AVERAGE_SESSIONS[user].sessions
@@ -30,17 +34,14 @@ console.log(user)
   const userKeyData = USER_MAIN_DATA[user].keyData
 
   return (
-    <>
-    <SideBar />
-      <UserHello userFirstName = {userFirstName}/>
+    <section className="containerUser">
+      <UserHello userFirstName={userFirstName} />
       <Activity userActivity={userActivity} />
       <AverageSessions userSessionAverage={userSessionAverage} />
       <Perform userPerform={userPerform} />
       <Score userScore={userScore} />
       <Nutrients userKeyData={userKeyData} />
-  </>
-
-    
+    </section>
   )
 }
 

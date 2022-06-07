@@ -1,9 +1,20 @@
 .averageSessions {
-    
+    position: relative;
     grid-area: averageSessions;
     background-color: #FF0000;
+    border-radius: 5px;
+    width: 259px;
+    height: 272px;
 
-    & figure {
-        margin: 0;
+    & h2{
+        position: absolute;
+        color: white;
+        top: 30px;
+        left: 34px;
+        font-size: 15px;
+        font-weight: 500;
+        width: 147px;
+        opacity: 0.6; 
     }
+
 }

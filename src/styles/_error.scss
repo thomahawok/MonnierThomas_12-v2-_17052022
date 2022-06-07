@@ -1,0 +1,21 @@
+.error {
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+
+    & h1 {
+    font-size: 50px;
+    color: #e60000;
+    }
+
+    & h2 {
+        font-size: 20px;
+    }
+
+  }
+
+  

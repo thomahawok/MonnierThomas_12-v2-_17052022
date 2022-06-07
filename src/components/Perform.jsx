@@ -32,29 +32,27 @@ function Perform({ userPerform }) {
 
   return (
     <article className="perform">
-      <figure>
-        <ResponsiveContainer width="100%" height={263}>
-          <RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="65%">
-            <PolarGrid radialLines={false} />
-            <PolarAngleAxis
-              dataKey="kind"
-              tickSize={10}
-              tick={{
-                fill: 'white',
-                fontSize: 10,
-                fontWeight: 500,
-                y: 200,
-              }}
-            />
-            <Radar
-              dataKey="value"
-              stroke="#FF0101"
-              fill="#FF0101"
-              fillOpacity={0.7}
-            />
-          </RadarChart>
-        </ResponsiveContainer>
-      </figure>
+      <ResponsiveContainer width="100%" height={263}>
+        <RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="65%">
+          <PolarGrid radialLines={false} />
+          <PolarAngleAxis
+            dataKey="kind"
+            tickSize={10}
+            tick={{
+              fill: 'white',
+              fontSize: 10,
+              fontWeight: 500,
+              y: 200,
+            }}
+          />
+          <Radar
+            dataKey="value"
+            stroke="#FF0101"
+            fill="#FF0101"
+            fillOpacity={0.7}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </article>
   )
 }
