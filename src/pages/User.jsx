@@ -1,3 +1,4 @@
+//@ts-check
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
@@ -7,7 +8,6 @@ import {
   getPerformance,
 } from '../services/service'
 
-//import SideBar from '../components/SideBar'
 import UserHello from '../components/UserHello'
 import Activity from '../components/Activity'
 import AverageSessions from '../components/AverageSessions'
@@ -15,27 +15,35 @@ import Perform from '../components/Perform'
 import Score from '../components/Score'
 import Nutrients from '../components/Nutrients'
 import Loader from '../components/Loader'
-//import { Oval } from 'react-loader-spinner'
 
 /**
- * USER PAGE
- * @returns {JSX}
+ * Function that returns the user page
+ *
+ * @returns JSX.Element
  */
 
 function User() {
-  const { id } = useParams()
+  /**
+   *
+   * @param {Object}  userData - The informations of the user
+   * @param {Object}  userData.keyData - The nutrients informations
+   * @param {number}  userData.todayScore - User score
+   * @param {string}  userData.userFirstName - User firstname
+   */
 
+  const { id } = useParams()
+  const userId = useParams()
+  console.log(userId)
   const [userData, setUserData] = useState([])
+
   const [userActivity, setUserActivity] = useState([])
   const [userAvergeSession, setUserAvergeSession] = useState([])
   const [userPerformance, setUserPerformance] = useState([])
-
-  /**
-   * Function used to get datas from the API and stores it in the states
-   * @param {Number} id
-   */
-
+  console.log(userData)
   useEffect(() => {
+    /**
+     * @param {string} id - id's user
+     */
     getUserData({ id }).then((data) =>
       setUserData({
         userFirstName: data.userInfos.firstName,
@@ -46,10 +54,8 @@ function User() {
     getActivity({ id }).then((data) => setUserActivity(data))
     getAverageSession({ id }).then((data) => setUserAvergeSession(data))
     getPerformance({ id }).then((data) => setUserPerformance(data))
-  }, [])
+  }, [id])
 
-  console.log(userData)
-  console.log(userAvergeSession)
   return (
     <section className="containerUser">
       {userData === [] || userData.userFirstName === undefined ? (

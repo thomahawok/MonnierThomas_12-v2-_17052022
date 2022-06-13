@@ -1,3 +1,4 @@
+//@ts-check
 import caloriesIcon from '../assets/calories.svg'
 import proteinIcon from '../assets/protein.svg'
 import carbsIcon from '../assets/carbs.svg'
@@ -7,10 +8,12 @@ import PropTypes from 'prop-types'
 
 /**
  * @param {object} userKeyData
+ * @param {number} [userKeyData.calorieCount]
  * @returns aside Nutrients containing the Nutrients cards
  */
 
 function Nutrients({ userKeyData }) {
+  console.log(userKeyData)
   return (
     <>
       <NutrientCard

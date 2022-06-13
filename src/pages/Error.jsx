@@ -1,8 +1,9 @@
+//@ts-check
 import React from 'react'
 
 /**
  * ERROR PAGE
- * @returns {JSX}
+ * @returns JSX.Element error page
  */
 function Error() {
   return (

@@ -1,6 +1,7 @@
+//@ts-check
 /**
  * Component - Loader
- * @returns {JSX}
+ * @returns JSX.Element
  */
 
 function Loader() {

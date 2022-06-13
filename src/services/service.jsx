@@ -1,9 +1,11 @@
+//@ts-expect-error
 import axios from 'axios'
 
 /**
  * get USER_MAIN_DATA from API
- * @param {Number} id
- * @returns Object
+ * @async
+ * @param {string} {id} - The user id.
+ * @return {Promise<object>} The data from the URL.
  */
 
 export async function getUserData({ id }) {
@@ -15,10 +17,15 @@ export async function getUserData({ id }) {
   }
 }
 
+{"data":{"id":18,"userInfos":{"firstName":"Cecilia","lastName":"Ratorez","age":34},"todayScore":0.3,"keyData":{"calorieCount":2500,"proteinCount":90,"carbohydrateCount":150,"lipidCount":120}}}
+
+
+
 /**
  * get USER_ACTIVITY from API
- * @param {Number} id
- * @returns Object
+ * async
+ * @param {string} {id} - The user id.
+ * @return {Promise<object>} The data from the URL.
  */
 export async function getActivity({ id }) {
   try {
@@ -33,8 +40,9 @@ export async function getActivity({ id }) {
 
 /**
  * get USER_AVERAGE_SESSIONS from API
- * @param {Number} id
- * @returns Object
+ * async
+ * @param {string} {id} - The user id.
+ * @return {Promise<object>} The data from the URL.
  */
 export async function getAverageSession({ id }) {
   try {
@@ -49,8 +57,8 @@ export async function getAverageSession({ id }) {
 
 /**
  * get USER_PERFORMANCE from API
- * @param {Number} id
- * @returns Object
+ * @param {string} {id} - The user id.
+ * @return {Promise<object>} The data from the URL.
  */
 export async function getPerformance({ id }) {
   try {

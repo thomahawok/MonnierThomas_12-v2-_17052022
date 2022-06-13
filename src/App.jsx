@@ -1,3 +1,5 @@
+//@ts-check
+
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -8,7 +10,6 @@ import User from './pages/User'
 import UserMocked from './pages/UserMocked'
 import SideBar from './components/SideBar'
 import Error from './pages/Error'
-//import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 function App() {
   return (

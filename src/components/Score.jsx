@@ -1,3 +1,4 @@
+//@ts-check
 import {
   RadialBarChart,
   RadialBar,
@@ -8,10 +9,11 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - RadialChart Graph of todayScrore
- * @param {number} userScore
- * @returns {JSX}
+ * @param {object} userScore
+ * @returns JSX.Element
  */
 function Score({ userScore }) {
+  console.log(userScore)
   const scorePercentage = [{ value: userScore * 100 }]
   const newScore = userScore * 100
 

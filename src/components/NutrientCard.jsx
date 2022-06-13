@@ -1,14 +1,15 @@
+//@ts-check
 import PropTypes from 'prop-types'
 
 /**
- * @param {String} icon
- * @param {String} type
- * @param {String} className
- * @param {Number} value
- * @returns
+ * @param {NutrientCard.propTypes}
+ * @returns JSX.Element
  */
-
 function NutrientCard({ icon, value, nutrientType, classNameIcone }) {
+  console.log(value)
+  /**
+   *
+   */
   return (
     <div className={`nutrient ${nutrientType}`}>
       <div className={`nutrient__icon ${classNameIcone}`}>

@@ -1,3 +1,5 @@
+//@ts-check
+
 import {
   Legend,
   CartesianGrid,
@@ -12,18 +14,17 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - BarChart Graph of Daily activity
- * @param {array} userActivity
- * @param {string} userActivity.day // Day
- * @param {number} userActivity.kilogram // Height
- * @param {number} userActivity.calories // Calories
- * @returns {JSX}
+ * @param {object} userActivity
+ * @returns JSX.Element
  */
 function Activity({ userActivity }) {
-  //const userActivity = userActivity
-  //console.log(userActivity)
-  // REPLACE NUMBER DAY BY GOOD LABEL
+  /**
+   *
+   * @param {string} value
+   * @returns chart legend "Poids" and "Calories brulées"
+   */
 
-  const legendValue = (value) => {
+  function legendValue(value) {
     return <span className="dailyActivity__value">{value} </span>
   }
 
@@ -63,6 +64,7 @@ function Activity({ userActivity }) {
           />
           <YAxis
             yAxisId={1}
+            // @ts-ignore
             ataKey="calories"
             hide={true}
             domain={['dataMin - 100', 'dataMax + 100']}

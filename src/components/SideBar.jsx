@@ -1,51 +1,38 @@
+//@ts-check
 import { NavLink } from 'react-router-dom'
 import yoga from '../assets/yoga.svg'
 import natation from '../assets/natation.svg'
 import cycle from '../assets/cycle.svg'
 import force from '../assets/force.svg'
 
-
 /**
  * Component - SideBar
- * @param {yoga} // yogaLogo
- * @param {natation} // natationaLogo
- * @param {cycle} // cycleLogo
- * @param {force} // forceLogo
- * @returns {JSX}
+ * @returns JSX.Element
  */
 function SideBar() {
+  /**
+   * Logos
+   * @param {yoga} yoga // yogaLogo
+   * @param {natation} natation// natationaLogo
+   * @param {cycle} cycle// cycleLogo
+   * @param {force} force// forceLogo
+   */
   return (
-        <nav className="sideNav">
-            <NavLink
-              exact
-              className="sideNav__link"
-              to="/"
-            >
-              <img className="nav__logo" src={yoga} alt="yoga" />
-            </NavLink>
-            <NavLink
-              exact
-              className="sideNav__link"
-              to=""
-            >
-              <img className="nav__logo" src={natation} alt="natation" />
-            </NavLink>
-            <NavLink
-              exact
-              className="sideNav__link"
-              to=""
-            >
-              <img className="nav__logo" src={cycle} alt="cycle" />
-            </NavLink>
-            <NavLink
-              exact
-              className="sideNav__link"
-              to=""
-            >
-              <img className="nav__logo" src={force} alt="force" />
-            </NavLink>
-            <p>Copiryght, SportSee 2020</p>
-        </nav>
+    <nav className="sideNav">
+      <NavLink className="sideNav__link" to="/">
+        <img className="nav__logo" src={yoga} alt="yoga" />
+      </NavLink>
+      <NavLink className="sideNav__link" to="">
+        <img className="nav__logo" src={natation} alt="natation" />
+      </NavLink>
+      <NavLink className="sideNav__link" to="">
+        <img className="nav__logo" src={cycle} alt="cycle" />
+      </NavLink>
+      <NavLink className="sideNav__link" to="">
+        <img className="nav__logo" src={force} alt="force" />
+      </NavLink>
+      <p>Copiryght, SportSee 2020</p>
+    </nav>
   )
 }
 

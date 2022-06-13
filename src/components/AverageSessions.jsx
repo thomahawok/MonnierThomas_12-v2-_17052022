@@ -1,3 +1,4 @@
+//@ts-check
 import {
   LineChart,
   Line,
@@ -11,9 +12,8 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - LineChart Graph of session Longer
- * @param {number} userSessionAverage.day // Day
- * @param {number} userSessionAverage.sessionLength // Session Longer
- * @returns {JSX}
+ * @param {object} userSessionAverage
+ * @returns JSX.Element
  */
 
 function AverageSessions({ userSessionAverage }) {
@@ -51,6 +51,7 @@ function AverageSessions({ userSessionAverage }) {
             tick={{
               fill: 'transparent',
               opacity: 0.5,
+              // @ts-ignore
               AlignValue: 'right',
               fontSize: 12,
             }}

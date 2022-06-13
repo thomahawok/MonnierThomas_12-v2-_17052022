@@ -1,3 +1,4 @@
+//@ts-check
 import {
   RadarChart,
   PolarGrid,
@@ -9,13 +10,14 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - RadarChart Graph of performance
- * @param {number} userPerform.value // Performance
- * @param {number} userPerform.kind // Label
- * @returns {JSX}
+ * @param {Object[]}  userPerform // Performance
+ * @param {number}  userPerform[].value // Performance
+ * @param {string}  userPerform[].kind // Performance
+ * @returns JSX.Element
  */
 
 function Perform({ userPerform }) {
-  //console.log(userPerform)
+  console.log(userPerform)
 
   // REPLACE NUMBER DATA BY GOOD LABEL
   const kindName = [
@@ -61,7 +63,7 @@ Perform.propTypes = {
   userPerform: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number,
-      kind: PropTypes.number,
+      kind: PropTypes.string,
     })
   ).isRequired,
 }
