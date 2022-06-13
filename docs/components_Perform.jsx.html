@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/Perform.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,88 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/Perform.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import {
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  Radar,
+  ResponsiveContainer,
+} from 'recharts'
+import PropTypes from 'prop-types'
 
+/**
+ * Component - RadarChart Graph of performance
+ * @param {Object[]}  userPerform - The different types of performances
+ * @param {number}  userPerform[].value - Performance values
+ * @param {string}  userPerform[].kind - Types of performances
+ * @returns {React.ReactElement} JSX.Element - Graph of performance
+ */
 
-    <h3> </h3>
+function Perform({ userPerform }) {
+  // REPLACE NUMBER DATA BY GOOD LABEL
+  const kindName = [
+    'Intensité',
+    'Vitesse',
+    'Force',
+    'Endurance',
+    'Energie',
+    'Cardio',
+  ]
+  for (let i = 0; i &lt; 6; i++) {
+    userPerform[i].kind = kindName[i]
+  }
 
+  return (
+    &lt;article className="perform">
+      &lt;ResponsiveContainer width="100%" height={263}>
+        &lt;RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="65%">
+          &lt;PolarGrid radialLines={false} />
+          &lt;PolarAngleAxis
+            dataKey="kind"
+            tickSize={10}
+            tick={{
+              fill: 'white',
+              fontSize: 10,
+              fontWeight: 500,
+              y: 200,
+            }}
+          />
+          &lt;Radar
+            dataKey="value"
+            stroke="#FF0101"
+            fill="#FF0101"
+            fillOpacity={0.7}
+          />
+        &lt;/RadarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/article>
+  )
+}
 
+Perform.propTypes = {
+  userPerform: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+      kind: PropTypes.string,
+    })
+  ).isRequired,
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Perform
+</code></pre>
+        </article>
+    </section>
 
 
 

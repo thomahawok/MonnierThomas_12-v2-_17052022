@@ -2,14 +2,10 @@
 import PropTypes from 'prop-types'
 
 /**
- * @param {NutrientCard.propTypes}
- * @returns JSX.Element
+ * @param {{icon : string, value: number, nutrientType: string, classNameIcone: string }} props nutrient data
+ * @returns {React.ReactElement} JSX.Element - all nutrient card
  */
 function NutrientCard({ icon, value, nutrientType, classNameIcone }) {
-  console.log(value)
-  /**
-   *
-   */
   return (
     <div className={`nutrient ${nutrientType}`}>
       <div className={`nutrient__icon ${classNameIcone}`}>

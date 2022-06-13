@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> pages/User.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,130 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>pages/User.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import {
+  getUserData,
+  getActivity,
+  getAverageSession,
+  getPerformance,
+} from '../services/service'
 
+import UserHello from '../components/UserHello'
+import Activity from '../components/Activity'
+import AverageSessions from '../components/AverageSessions'
+import Perform from '../components/Perform'
+import Score from '../components/Score'
+import Nutrients from '../components/Nutrients'
+import Loader from '../components/Loader'
 
-    <h3> </h3>
+/**
+ * Function that returns the user page
+ * @returns {React.ReactElement} JSX.Element - the user main page with API data
+ */
 
+function User() {
+  /**
+   *
+   * @param {{keyData: object, todayScore: number,  userFirstName: string}}  userData - The informations of the user
+   * @param {Object}  userData.keyData - The nutrients informations
+   * @param {number}  userData.todayScore - User score
+   * @param {string}  userData.userFirstName - User firstname
+   */
 
+  const { id } = useParams()
+  const [userData, setUserData] = useState([])
+  const [userActivity, setUserActivity] = useState([])
+  const [userAvergeSession, setUserAvergeSession] = useState([])
+  const [userPerformance, setUserPerformance] = useState([])
 
+  useEffect(() => {
+    getUserData({ id }).then((data) =>
+      setUserData({
+        userFirstName: data.userInfos.firstName,
+        keyData: data.keyData,
+        todayScore: data.todayScore,
+      })
+    )
+    getActivity({ id }).then((data) => setUserActivity(data))
+    getAverageSession({ id }).then((data) => setUserAvergeSession(data))
+    getPerformance({ id }).then((data) => setUserPerformance(data))
+  }, [id])
 
+  return (
+    &lt;section className="containerUser">
+      {userData === [] || userData.userFirstName === undefined ? (
+        &lt;div className="userHello">
+          &lt;p>Chargement du prénom...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;UserHello userFirstName={userData.userFirstName} />
+      )}
 
+      {userActivity.length === 0 ? (
+        &lt;div className="dailyActivity">
+          &lt;p>Chargement du rapport d'activité quotidienne...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;Activity userActivity={userActivity} />
+      )}
 
+      {userAvergeSession.length === 0 || userAvergeSession === undefined ? (
+        &lt;div className="averageSessions">
+          &lt;p>Chargement des durées moyennes de sessions...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;AverageSessions userSessionAverage={userAvergeSession} />
+      )}
 
+      {userData === [] || userData.todayScore === undefined ? (
+        &lt;div className="score">
+          &lt;p>Chargement du score...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;Score userScore={userData.todayScore} />
+      )}
 
+      {userData === [] || userData.keyData === undefined ? (
+        &lt;div className="nutrient">
+          &lt;p>Chargement des donnés d'alimentation...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;Nutrients userKeyData={userData.keyData} />
+      )}
 
+      {userPerformance === [] || userPerformance.data === undefined ? (
+        &lt;div className="perform">
+          &lt;p>Chargement des données de performances...&lt;/p>
+          &lt;Loader />
+        &lt;/div>
+      ) : (
+        &lt;Perform userPerform={userPerformance.data} />
+      )}
+    &lt;/section>
+  )
+}
 
-    
-
-
-
-
-
+export default User
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> pages/UserMocked.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,68 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>pages/UserMocked.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import UserHello from '../components/UserHello'
+import Activity from '../components/Activity'
+import AverageSessions from '../components/AverageSessions'
+import Perform from '../components/Perform'
+import Score from '../components/Score'
+import Nutrients from '../components/Nutrients'
 
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from '../datas/mockedUsersDatas'
+/**
+ * MOKED USER PAGE
+ * @returns {React.ReactElement} JSX.Element - the user main page with maocked data
+ */
 
-    <h3> </h3>
+function UserMocked() {
+  const { id } = useParams()
+  const idNum = parseInt(id, 10)
 
+  const user = USER_MAIN_DATA.findIndex(function (item) {
+    return idNum === item.id
+  })
 
+  const userFirstName = USER_MAIN_DATA[user].userInfos.firstName
+  const userActivity = USER_ACTIVITY[user].sessions
+  const userSessionAverage = USER_AVERAGE_SESSIONS[user].sessions
+  const userPerform = USER_PERFORMANCE[user].data
+  const userScore = USER_MAIN_DATA[user].todayScore
+  const userKeyData = USER_MAIN_DATA[user].keyData
 
+  return (
+    &lt;section className="containerUser">
+      &lt;UserHello userFirstName={userFirstName} />
+      &lt;Activity userActivity={userActivity} />
+      &lt;AverageSessions userSessionAverage={userSessionAverage} />
+      &lt;Perform userPerform={userPerform} />
+      &lt;Score userScore={userScore} />
+      &lt;Nutrients userKeyData={userKeyData} />
+    &lt;/section>
+  )
+}
 
-
-
-
-
-
-
-    
-
-
-
-
-
+export default UserMocked
+</code></pre>
+        </article>
+    </section>
 
 
 

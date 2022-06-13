@@ -1,7 +1,7 @@
 //@ts-check
 /**
  * Component - Loader
- * @returns JSX.Element
+ * @returns {React.ReactElement} JSX.Element - loader element
  */
 
 function Loader() {

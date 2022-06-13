@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/Header.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,54 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/Header.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import { Link, NavLink } from 'react-router-dom'
+import logo from '../assets/logo_sportsee.svg'
 
+/**
+ * Component - Header
+ * @returns {React.ReactElement} JSX.Element - header component
+ */
 
-    <h3> </h3>
+function Header() {
+  return (
+    &lt;header>
+      &lt;nav className="nav">
+        &lt;Link to="/">
+          &lt;img className="nav__logo" src={logo} alt="SportSee logo" />
+        &lt;/Link>
 
+        &lt;NavLink className="nav__menu__link" to="/">
+          Accueil
+        &lt;/NavLink>
+        &lt;NavLink className="nav__menu__link" to="">
+          Profil
+        &lt;/NavLink>
+        &lt;NavLink className="nav__menu__link" to="">
+          Réglage
+        &lt;/NavLink>
+        &lt;NavLink className="nav__menu__link" to="">
+          Communauté
+        &lt;/NavLink>
+      &lt;/nav>
+    &lt;/header>
+  )
+}
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Header
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -10,15 +10,13 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - RadarChart Graph of performance
- * @param {Object[]}  userPerform // Performance
- * @param {number}  userPerform[].value // Performance
- * @param {string}  userPerform[].kind // Performance
- * @returns JSX.Element
+ * @param {Object[]}  userPerform - The different types of performances
+ * @param {number}  userPerform[].value - Performance values
+ * @param {string}  userPerform[].kind - Types of performances
+ * @returns {React.ReactElement} JSX.Element - Graph of performance
  */
 
 function Perform({ userPerform }) {
-  console.log(userPerform)
-
   // REPLACE NUMBER DATA BY GOOD LABEL
   const kindName = [
     'Intensité',

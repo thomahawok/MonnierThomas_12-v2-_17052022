@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/UserHello.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,48 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/UserHello.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import PropTypes from 'prop-types'
+/**
+ * Function that returns the Welcome Title in Profil Page
+ * @param {object} userFirstName // Name's user
+ * @returns {React.ReactElement} JSX.Element - user's presentation
+ */
 
+function UserHello({ userFirstName }) {
+  return (
+    &lt;article className="userHello">
+      &lt;h1>
+        Bonjour &lt;span>{userFirstName}&lt;/span>
+      &lt;/h1>
+      &lt;p>
+        Félicitation ! Vous avez explosé vos objectifs hier
+        &lt;span role="img" aria-label="icon">
+          👏
+        &lt;/span>
+      &lt;/p>
+    &lt;/article>
+  )
+}
 
-    <h3> </h3>
+UserHello.propTypes = {
+  userFirstName: PropTypes.string.isRequired,
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default UserHello
+</code></pre>
+        </article>
+    </section>
 
 
 

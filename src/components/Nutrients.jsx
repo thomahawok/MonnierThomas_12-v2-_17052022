@@ -7,13 +7,15 @@ import NutrientCard from '../components/NutrientCard'
 import PropTypes from 'prop-types'
 
 /**
- * @param {object} userKeyData
- * @param {number} [userKeyData.calorieCount]
- * @returns aside Nutrients containing the Nutrients cards
+ * @param {object} userKeyData - The different types of nutrients
+ * @param {number} userKeyData.calorieCount - Calorie type nutrient
+ * @param {number} userKeyData.proteinCount - Protein type nutrient
+ * @param {number} userKeyData.carbohydrateCount - Carbohyrate type nutrient
+ * @param {number} userKeyData.lipidCount - Lipide type nutrient
+ * @returns {React.ReactElement} JSX.Element - aside Nutrients containing the Nutrients cards
  */
 
 function Nutrients({ userKeyData }) {
-  console.log(userKeyData)
   return (
     <>
       <NutrientCard

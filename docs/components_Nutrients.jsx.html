@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/Nutrients.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,77 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/Nutrients.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import caloriesIcon from '../assets/calories.svg'
+import proteinIcon from '../assets/protein.svg'
+import carbsIcon from '../assets/carbs.svg'
+import fatIcon from '../assets/fat.svg'
+import NutrientCard from '../components/NutrientCard'
+import PropTypes from 'prop-types'
 
+/**
+ * @param {object} userKeyData - The different types of nutrients
+ * @param {number} userKeyData.calorieCount - Calorie type nutrient
+ * @param {number} userKeyData.proteinCount - Protein type nutrient
+ * @param {number} userKeyData.carbohydrateCount - Carbohyrate type nutrient
+ * @param {number} userKeyData.lipidCount - Lipide type nutrient
+ * @returns {React.ReactElement} JSX.Element - aside Nutrients containing the Nutrients cards
+ */
 
-    <h3> </h3>
+function Nutrients({ userKeyData }) {
+  return (
+    &lt;>
+      &lt;NutrientCard
+        classNameIcone="caloriesIcon"
+        icon={caloriesIcon}
+        value={userKeyData.calorieCount}
+        nutrientType={'calories'}
+      />
+      &lt;NutrientCard
+        classNameIcone="proteinIcon"
+        icon={proteinIcon}
+        value={userKeyData.proteinCount}
+        nutrientType={'protéines'}
+      />
+      &lt;NutrientCard
+        classNameIcone="carbsIcon"
+        icon={carbsIcon}
+        value={userKeyData.carbohydrateCount}
+        nutrientType={'glucides'}
+      />
+      &lt;NutrientCard
+        classNameIcone="fatIcon"
+        icon={fatIcon}
+        value={userKeyData.lipidCount}
+        nutrientType={'lipides'}
+      />
+    &lt;/>
+  )
+}
 
+Nutrients.propTypes = {
+  userKeyData: PropTypes.shape({
+    calorieCount: PropTypes.number,
+    proteinCount: PropTypes.number,
+    carbohydrateCount: PropTypes.number,
+    lipidCount: PropTypes.number,
+  }).isRequired,
+}
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Nutrients
+</code></pre>
+        </article>
+    </section>
 
 
 

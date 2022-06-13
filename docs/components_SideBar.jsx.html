@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/SideBar.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,58 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/SideBar.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import { NavLink } from 'react-router-dom'
+import yoga from '../assets/yoga.svg'
+import natation from '../assets/natation.svg'
+import cycle from '../assets/cycle.svg'
+import force from '../assets/force.svg'
 
+/**
+ * Component - SideBar
+ * @returns {React.ReactElement} JSX.Element - SideBar component
+ */
+function SideBar() {
+  /**
+   * Logos
+   * @param {yoga} yoga // yogaLogo
+   * @param {natation} natation// natationaLogo
+   * @param {cycle} cycle// cycleLogo
+   * @param {force} force// forceLogo
+   */
+  return (
+    &lt;nav className="sideNav">
+      &lt;NavLink className="sideNav__link" to="/">
+        &lt;img className="nav__logo" src={yoga} alt="yoga" />
+      &lt;/NavLink>
+      &lt;NavLink className="sideNav__link" to="">
+        &lt;img className="nav__logo" src={natation} alt="natation" />
+      &lt;/NavLink>
+      &lt;NavLink className="sideNav__link" to="">
+        &lt;img className="nav__logo" src={cycle} alt="cycle" />
+      &lt;/NavLink>
+      &lt;NavLink className="sideNav__link" to="">
+        &lt;img className="nav__logo" src={force} alt="force" />
+      &lt;/NavLink>
+      &lt;p>Copiryght, SportSee 2020&lt;/p>
+    &lt;/nav>
+  )
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default SideBar
+</code></pre>
+        </article>
+    </section>
 
 
 

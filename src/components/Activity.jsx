@@ -14,8 +14,8 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - BarChart Graph of Daily activity
- * @param {object} userActivity
- * @returns JSX.Element
+ * @param {object} userActivity user's physical activity data
+ * @returns {React.ReactElement} JSX.Element - physical activity chart
  */
 function Activity({ userActivity }) {
   /**

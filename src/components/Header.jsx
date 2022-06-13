@@ -4,7 +4,7 @@ import logo from '../assets/logo_sportsee.svg'
 
 /**
  * Component - Header
- * @returns JSX.Element
+ * @returns {React.ReactElement} JSX.Element - header component
  */
 
 function Header() {

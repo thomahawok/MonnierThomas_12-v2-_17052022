@@ -7,7 +7,7 @@ import force from '../assets/force.svg'
 
 /**
  * Component - SideBar
- * @returns JSX.Element
+ * @returns {React.ReactElement} JSX.Element - SideBar component
  */
 function SideBar() {
   /**

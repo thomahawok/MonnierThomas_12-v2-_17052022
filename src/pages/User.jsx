@@ -18,32 +18,25 @@ import Loader from '../components/Loader'
 
 /**
  * Function that returns the user page
- *
- * @returns JSX.Element
+ * @returns {React.ReactElement} JSX.Element - the user main page with API data
  */
 
 function User() {
   /**
    *
-   * @param {Object}  userData - The informations of the user
+   * @param {{keyData: object, todayScore: number,  userFirstName: string}}  userData - The informations of the user
    * @param {Object}  userData.keyData - The nutrients informations
    * @param {number}  userData.todayScore - User score
    * @param {string}  userData.userFirstName - User firstname
    */
 
   const { id } = useParams()
-  const userId = useParams()
-  console.log(userId)
   const [userData, setUserData] = useState([])
-
   const [userActivity, setUserActivity] = useState([])
   const [userAvergeSession, setUserAvergeSession] = useState([])
   const [userPerformance, setUserPerformance] = useState([])
-  console.log(userData)
+
   useEffect(() => {
-    /**
-     * @param {string} id - id's user
-     */
     getUserData({ id }).then((data) =>
       setUserData({
         userFirstName: data.userInfos.firstName,

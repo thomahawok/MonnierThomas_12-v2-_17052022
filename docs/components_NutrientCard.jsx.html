@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/NutrientCard.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,48 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/NutrientCard.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import PropTypes from 'prop-types'
 
+/**
+ * @param {{icon : string, value: number, nutrientType: string, classNameIcone: string }} props nutrient data
+ * @returns {React.ReactElement} JSX.Element - all nutrient card
+ */
+function NutrientCard({ icon, value, nutrientType, classNameIcone }) {
+  return (
+    &lt;div className={`nutrient ${nutrientType}`}>
+      &lt;div className={`nutrient__icon ${classNameIcone}`}>
+        &lt;img src={icon} alt="" className="macros-icon" />
+      &lt;/div>
+      &lt;div className="nutrient__info">
+        &lt;h2>{value}&lt;/h2>
+        &lt;p>{nutrientType}&lt;/p>
+      &lt;/div>
+    &lt;/div>
+  )
+}
 
-    <h3> </h3>
+NutrientCard.propTypes = {
+  icon: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  nutrientType: PropTypes.string.isRequired,
+  classNameIcone: PropTypes.string.isRequired,
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default NutrientCard
+</code></pre>
+        </article>
+    </section>
 
 
 

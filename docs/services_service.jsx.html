@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> services/service.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,115 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>services/service.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-expect-error
+import axios from 'axios'
 
+/**
+ * get USER_MAIN_DATA from API
+ * @async
+ * @param {String} {id} - The user id.
+ * @return {Promise&lt;UserInfos>} The data from the URL.
+ */
 
-    <h3> </h3>
+export async function getUserData({ id }) {
+  try {
+    const response = await axios.get(`http://localhost:3000/user/${id}`)
+    return response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+/**User information
+ * @typedef {Object} UserInfos
+ * @param {String} firstName
+ * @param {String} lastName
+ * @param {Number} age
+ */
 
+/**
+ * get USER_ACTIVITY from API
+ * async
+ * @param {String} {id} - The user id.
+ * @return {Promise&lt;UserActivity>} The data from the URL.
+ */
+export async function getActivity({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/activity`
+    )
+    return response.data.data.sessions
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+/**
+ * User activity
+ * @typedef {Object} UserActivity
+ * @param {String} day
+ * @param {Number} kilogram
+ * @param {Number} calories
+ */
 
+/**
+ * get USER_AVERAGE_SESSIONS from API
+ * async
+ * @param {String} {id} - The user id.
+ * @return {Promise&lt;UserAverageSessions>} The data from the URL.
+ */
+export async function getAverageSession({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/average-sessions`
+    )
+    return response.data.data.sessions
+  } catch (error) {
+    console.error(error)
+  }
+}
+/**
+ * User average-sessions
+ * @typedef {Object} UserAverageSessions
+ * @param {Number} day
+ * @param {Number} sessionLength
+ */
 
+/**
+ * get USER_PERFORMANCE from API
+ * @param {String} {id} - The user id.
+ * @return {Promise&lt;UserPerformance>} The data from the URL.
+ */
+export async function getPerformance({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/performance`
+    )
+    return response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-
-
-
-
-    
-
-
-
-
-
+/**
+ * User performance
+ * @typedef {Object} UserPerformance
+ * @param {Number} value
+ * @param {Number} kind
+ */
+</code></pre>
+        </article>
+    </section>
 
 
 

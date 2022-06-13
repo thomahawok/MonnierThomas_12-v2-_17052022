@@ -3,7 +3,7 @@ import React from 'react'
 
 /**
  * ERROR PAGE
- * @returns JSX.Element error page
+ * @returns {React.ReactElement} JSX.Element error page
  */
 function Error() {
   return (

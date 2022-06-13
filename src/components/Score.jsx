@@ -9,8 +9,8 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - RadialChart Graph of todayScrore
- * @param {object} userScore
- * @returns JSX.Element
+ * @param {number} userScore - The score of the user
+ * @returns {React.ReactElement} JSX.Element - Graph of score
  */
 function Score({ userScore }) {
   console.log(userScore)
@@ -28,6 +28,7 @@ function Score({ userScore }) {
           barSize={10}
           startAngle={80}
           endAngle={440}
+          // @ts-ignore
           fill={'#FF0000'}
         >
           <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 /**
  * Function that returns the Welcome Title in Profil Page
  * @param {object} userFirstName // Name's user
- * @returns JSX.Element
+ * @returns {React.ReactElement} JSX.Element - user's presentation
  */
 
 function UserHello({ userFirstName }) {

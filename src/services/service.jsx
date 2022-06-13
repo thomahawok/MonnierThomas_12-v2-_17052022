@@ -4,8 +4,8 @@ import axios from 'axios'
 /**
  * get USER_MAIN_DATA from API
  * @async
- * @param {string} {id} - The user id.
- * @return {Promise<object>} The data from the URL.
+ * @param {String} {id} - The user id.
+ * @return {Promise<UserInfos>} The data from the URL.
  */
 
 export async function getUserData({ id }) {
@@ -17,15 +17,18 @@ export async function getUserData({ id }) {
   }
 }
 
-{"data":{"id":18,"userInfos":{"firstName":"Cecilia","lastName":"Ratorez","age":34},"todayScore":0.3,"keyData":{"calorieCount":2500,"proteinCount":90,"carbohydrateCount":150,"lipidCount":120}}}
-
-
+/**User information
+ * @typedef {Object} UserInfos
+ * @param {String} firstName
+ * @param {String} lastName
+ * @param {Number} age
+ */
 
 /**
  * get USER_ACTIVITY from API
  * async
- * @param {string} {id} - The user id.
- * @return {Promise<object>} The data from the URL.
+ * @param {String} {id} - The user id.
+ * @return {Promise<UserActivity>} The data from the URL.
  */
 export async function getActivity({ id }) {
   try {
@@ -39,10 +42,18 @@ export async function getActivity({ id }) {
 }
 
 /**
+ * User activity
+ * @typedef {Object} UserActivity
+ * @param {String} day
+ * @param {Number} kilogram
+ * @param {Number} calories
+ */
+
+/**
  * get USER_AVERAGE_SESSIONS from API
  * async
- * @param {string} {id} - The user id.
- * @return {Promise<object>} The data from the URL.
+ * @param {String} {id} - The user id.
+ * @return {Promise<UserAverageSessions>} The data from the URL.
  */
 export async function getAverageSession({ id }) {
   try {
@@ -54,11 +65,17 @@ export async function getAverageSession({ id }) {
     console.error(error)
   }
 }
+/**
+ * User average-sessions
+ * @typedef {Object} UserAverageSessions
+ * @param {Number} day
+ * @param {Number} sessionLength
+ */
 
 /**
  * get USER_PERFORMANCE from API
- * @param {string} {id} - The user id.
- * @return {Promise<object>} The data from the URL.
+ * @param {String} {id} - The user id.
+ * @return {Promise<UserPerformance>} The data from the URL.
  */
 export async function getPerformance({ id }) {
   try {
@@ -70,3 +87,10 @@ export async function getPerformance({ id }) {
     console.error(error)
   }
 }
+
+/**
+ * User performance
+ * @typedef {Object} UserPerformance
+ * @param {Number} value
+ * @param {Number} kind
+ */

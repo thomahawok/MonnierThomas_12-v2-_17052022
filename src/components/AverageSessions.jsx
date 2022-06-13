@@ -12,8 +12,8 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - LineChart Graph of session Longer
- * @param {object} userSessionAverage
- * @returns JSX.Element
+ * @param {object} userSessionAverage user’s average session data
+ * @returns {React.ReactElement} JSX.Element - average session chart
  */
 
 function AverageSessions({ userSessionAverage }) {

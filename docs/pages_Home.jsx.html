@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> pages/Home.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,49 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>pages/Home.jsx</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
 
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-    <h3> </h3>
+/**
+ * links to user pages based on data type (mocked or retrieve from API)
+ * @returns {React.ReactElement} JSX.Element - Link to user page
+ */
 
+function Home() {
+  return (
+    &lt;section className="homeSection">
+      &lt;Link className="homeSection__userNav__link" to="UserMocked/12">
+        User Mock 12
+      &lt;/Link>
+      &lt;Link className="homeSection__userNav__link" to="UserMocked/18">
+        User Mock 18
+      &lt;/Link>
+      &lt;Link className="homeSection__userNav__link" to="User/12">
+        User API 12
+      &lt;/Link>
+      &lt;Link className="homeSection__userNav__link" to="User/18">
+        User API 18
+      &lt;/Link>
+    &lt;/section>
+  )
+}
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Home
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -4,9 +4,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 /**
- * Link to user page
- * @returns JSX.Element
+ * links to user pages based on data type (mocked or retrieve from API)
+ * @returns {React.ReactElement} JSX.Element - Link to user page
  */
+
 function Home() {
   return (
     <section className="homeSection">
