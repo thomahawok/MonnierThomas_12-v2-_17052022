@@ -1,5 +1,3 @@
-//@ts-check
-
 import {
   Legend,
   CartesianGrid,
@@ -14,10 +12,14 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - BarChart Graph of Daily activity
- * @param {object} userActivity user's physical activity data
+ * @param {Object[]} userActivity user's physical activity data
+ * @param {String} userActivity[].day
+ * @param {Number} userActivity[].kilogram
+ * @param {Number} userActivity[].calories
  * @returns {React.ReactElement} JSX.Element - physical activity chart
  */
 function Activity({ userActivity }) {
+  console.log(userActivity)
   /**
    *
    * @param {string} value

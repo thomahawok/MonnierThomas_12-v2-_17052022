@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
  */
 
 function UserHello({ userFirstName }) {
+  console.log(userFirstName)
   return (
     <article className="userHello">
       <h1>
