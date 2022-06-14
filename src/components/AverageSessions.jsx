@@ -1,4 +1,3 @@
-//@ts-check
 import {
   LineChart,
   Line,
@@ -12,7 +11,9 @@ import PropTypes from 'prop-types'
 
 /**
  * Component - LineChart Graph of session Longer
- * @param {object} userSessionAverage user’s average session data
+ * @param {object[]} userSessionAverage user’s average session data
+ * @param {Number} userSessionAverage[].day Day of the week
+ * @param {Number} userSessionAverage[].sessionLength Session duration
  * @returns {React.ReactElement} JSX.Element - average session chart
  */
 
@@ -29,8 +30,8 @@ function AverageSessions({ userSessionAverage }) {
           data={userSessionAverage}
           margin={{
             top: 0,
-            right: 0,
-            left: 0,
+            right: 10,
+            left: 10,
             bottom: 10,
           }}
         >
@@ -45,15 +46,15 @@ function AverageSessions({ userSessionAverage }) {
 
           <CartesianGrid stroke="transparent" />
           <XAxis
-            tickLine={false}
-            axisLine={false}
-            tickMargin={40}
+            tickLine={true}
+            axisLine={true}
+            tickMargin={50}
             tick={{
               fill: 'transparent',
               opacity: 0.5,
               // @ts-ignore
               AlignValue: 'right',
-              fontSize: 12,
+              fontSize: 50,
             }}
             padding={{ left: 0, right: 0 }}
             hide={true}
@@ -61,7 +62,7 @@ function AverageSessions({ userSessionAverage }) {
           <YAxis hide={true} domain={['dataMin-30', 'dataMax+50']} />
           <text
             x="50%"
-            y="100%"
+            y="95%"
             textAnchor="middle"
             fontSize="12"
             fontWeight="500"

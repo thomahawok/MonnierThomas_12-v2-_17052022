@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
  * Component - RadarChart Graph of performance
  * @param {Object[]}  userPerform - The different types of performances
  * @param {number}  userPerform[].value - Performance values
- * @param {string}  userPerform[].kind - Types of performances
+ * @param {number}  userPerform[].kind - Types of performances
  * @returns {React.ReactElement} JSX.Element - Graph of performance
  */
 
@@ -26,14 +26,17 @@ function Perform({ userPerform }) {
     'Energie',
     'Cardio',
   ]
+
   for (let i = 0; i < 6; i++) {
     userPerform[i].kind = kindName[i]
   }
 
+  console.log(userPerform)
+
   return (
     <article className="perform">
       <ResponsiveContainer width="100%" height={263}>
-        <RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="65%">
+        <RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="75%">
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
             dataKey="kind"
@@ -61,7 +64,7 @@ Perform.propTypes = {
   userPerform: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number,
-      kind: PropTypes.string,
+      kind: PropTypes.number,
     })
   ).isRequired,
 }
