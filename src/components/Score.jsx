@@ -27,7 +27,6 @@ function Score({ userScore }) {
           barSize={10}
           startAngle={80}
           endAngle={440}
-          // @ts-ignore
           fill={'#FF0000'}
         >
           <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />

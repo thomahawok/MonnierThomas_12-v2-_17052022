@@ -11,6 +11,7 @@ import axios from 'axios'
 export async function getUserData({ id }) {
   try {
     const response = await axios.get(`http://localhost:3000/user/${id}`)
+    console.log(response)
     return response.data.data
   } catch (error) {
     console.log(error)
@@ -81,27 +82,6 @@ export async function getPerformance({ id }) {
   try {
     const response = await axios.get(
       `http://localhost:3000/user/${id}/performance`
-    )
-    return response.data.data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-/**
- * User performance
- * @typedef {Object} UserPerformance
- * @param {Number} value
- * @param {Number} kind
- */
-
-export async function getAllData({ id }) {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/user/${id}/performance`,
-      `http://localhost:3000/user/${id}/average-sessions`,
-      `http://localhost:3000/user/${id}/activity`,
-      `http://localhost:3000/user/${id}`
     )
     return response.data.data
   } catch (error) {
