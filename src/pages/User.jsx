@@ -27,7 +27,7 @@ function User() {
   const [userAvergeSession, setUserAvergeSession] = useState([])
   const [userPerformance, setUserPerformance] = useState([])
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState([])
+
   useEffect(() => {
     getUserData({ id }).then((data) => {
       setUserData({
@@ -47,10 +47,6 @@ function User() {
     })
     getPerformance({ id }).then((data) => {
       setUserPerformance(data)
-      setLoading(false)
-    })
-    getAllData({ id }).then((data) => {
-      setData(data)
       setLoading(false)
     })
   }, [id])
