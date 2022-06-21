@@ -13,7 +13,7 @@ export async function getUserData({ id }) {
     const response = await axios.get(`http://localhost:3000/user/${id}`)
     return response.data.data
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 
@@ -37,7 +37,7 @@ export async function getActivity({ id }) {
     )
     return response.data.data.sessions
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 
@@ -62,7 +62,7 @@ export async function getAverageSession({ id }) {
     )
     return response.data.data.sessions
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 /**
@@ -84,7 +84,7 @@ export async function getPerformance({ id }) {
     )
     return response.data.data
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 
@@ -94,3 +94,17 @@ export async function getPerformance({ id }) {
  * @param {Number} value
  * @param {Number} kind
  */
+
+export async function getAllData({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/performance`,
+      `http://localhost:3000/user/${id}/average-sessions`,
+      `http://localhost:3000/user/${id}/activity`,
+      `http://localhost:3000/user/${id}`
+    )
+    return response.data.data
+  } catch (error) {
+    console.log(error)
+  }
+}

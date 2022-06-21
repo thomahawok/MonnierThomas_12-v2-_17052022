@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# SPORTSEE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+OPENCLASSROOMS Project 12 : Build an analytics dashboard with React
 
-## Available Scripts
+![SportSee](https://raw.githubusercontent.com/JulieMoreau01/moreaujulie_12_14012022/main/src/assets/readme.png)
 
-In the project directory, you can run:
+# DEPENDENCIES
 
-### `npm start`
+- Yarn [v2.2.0](https://yarnpkg.com/).
+- React [v18.1.0 ](https://fr.reactjs.org/).
+- Axios [v0.27.2 ](https://axios-http.com/).
+- Recharts [v2.1.10"](https://recharts.org/en-US).
+  `npm install recharts`
+- React Router [v6.3.0](https://reactrouter.com/).
+  `yarn add react-router-dom`
+- Prop-Types [v15.8.1](https://fr.reactjs.org/docs/typechecking-with-proptypes.html).
+  `yarn add prop-types`
+- Text editor: [Visual Studio Code](https://code.visualstudio.com/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project was bootstrapped with [Creat React App](https://create-react-app.dev/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# API Front-end Dashboard
 
-### `npm test`
+This repo contains all the source code to run the micro API for the sports analytics dashboard SportSee.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[API INSTALLATION](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard).
 
-### `npm run build`
+The API was bootstrapped without Docker.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Fork the repository
+- Clone it on your computer.
+- The `yarn` command will allow you to install the dependencies.
+- The `yarn dev` command will allow you to run the micro API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Endpoints
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+User Information : http://localhost:3000/user/18
 
-### `npm run eject`
+User Activity : http://localhost:3000/user/18}/activity
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+User Performance : http://localhost:3000/user/18/performance
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Average Sessions : http://localhost:3000/user/18/average-sessions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# STYLE
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ROBOTO FONT : [Google Font](https://fonts.google.com/specimen/Roboto?query=Roboto).
 
-## Learn More
+CSS : [CSS Modules Stylesheet](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/) : this feature is available with react-scripts@2.0.0 and higher.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+MOCK UP : [Figma](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# INSTALLATION
 
-### Code Splitting
+- Create a new file folder
+  `git init`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Clone The repository
+  `git clone https://github.com/thomahawok/MonnierThomas_12-v2-_17052022.git`
 
-### Analyzing the Bundle Size
+- The `yarn` command will allow you to install the dependencies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Lunch the projetct
+  `yarn start`
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The project was develop with ESLINT and PRETTIER
+  `yarn add -D prettier`

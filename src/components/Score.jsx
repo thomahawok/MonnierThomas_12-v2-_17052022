@@ -1,4 +1,3 @@
-//@ts-check
 import {
   RadialBarChart,
   RadialBar,
@@ -13,10 +12,10 @@ import PropTypes from 'prop-types'
  * @returns {React.ReactElement} JSX.Element - Graph of score
  */
 function Score({ userScore }) {
-  console.log(userScore)
   const scorePercentage = [{ value: userScore * 100 }]
   const newScore = userScore * 100
 
+  //return a percentage of the score
   return (
     <article className="score">
       <h2>Score</h2>

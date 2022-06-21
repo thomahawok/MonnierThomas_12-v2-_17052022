@@ -1,13 +1,11 @@
-//@ts-check
 import PropTypes from 'prop-types'
 /**
  * Function that returns the Welcome Title in Profil Page
- * @param {object} userFirstName // Name's user
+ * @param {string} userFirstName // Name's user
  * @returns {React.ReactElement} JSX.Element - user's presentation
  */
 
 function UserHello({ userFirstName }) {
-  console.log(userFirstName)
   return (
     <article className="userHello">
       <h1>

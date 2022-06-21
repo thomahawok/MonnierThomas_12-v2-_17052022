@@ -18,8 +18,11 @@ import PropTypes from 'prop-types'
  */
 
 function AverageSessions({ userSessionAverage }) {
-  // REPLACE NUMBER DAY BY GOOD LABEL
+  // Replace number day by good label
   const weekdays = ['L ', 'M ', 'M ', 'J ', 'V ', 'S ', 'D ']
+  const data = userSessionAverage.map((item) => {
+    return { ...item, day: weekdays[item.day - 1] }
+  })
 
   return (
     <article className="averageSessions">
@@ -27,50 +30,41 @@ function AverageSessions({ userSessionAverage }) {
 
       <ResponsiveContainer width="100%" height={263}>
         <LineChart
-          data={userSessionAverage}
+          data={data}
           margin={{
             top: 0,
-            right: 10,
-            left: 10,
-            bottom: 10,
+            right: 0,
+            left: 0,
+            bottom: 0,
           }}
         >
+          <CartesianGrid vertical={false} horizontal={false} />
+
           <Line
-            type="monotone"
+            type="natural"
             dataKey="sessionLength"
+            scale="band"
             stroke="white"
-            dot={false}
             strokeWidth={2}
+            dot={false}
+            activeDot={{
+              fill: 'white',
+              strokeOpacity: '.5',
+              strokeWidth: '10',
+              r: 4,
+            }}
             unit=" min"
           />
 
-          <CartesianGrid stroke="transparent" />
           <XAxis
-            tickLine={true}
-            axisLine={true}
-            tickMargin={50}
-            tick={{
-              fill: 'transparent',
-              opacity: 0.5,
-              // @ts-ignore
-              AlignValue: 'right',
-              fontSize: 50,
-            }}
-            padding={{ left: 0, right: 0 }}
-            hide={true}
+            dataKey="day"
+            tick={{ fill: 'white', opacity: '.7' }}
+            tickLine={false}
+            tickMargin={5}
+            interval="preserveStartEnd"
+            axisLine={false}
           />
-          <YAxis hide={true} domain={['dataMin-30', 'dataMax+50']} />
-          <text
-            x="50%"
-            y="95%"
-            textAnchor="middle"
-            fontSize="12"
-            fontWeight="500"
-            fill="white"
-            opacity="0.5"
-          >
-            {weekdays}
-          </text>
+          <YAxis hide={true} domain={['dataMin-20', 'dataMax+40']} />
 
           <Tooltip
             itemStyle={{

@@ -19,16 +19,9 @@ import PropTypes from 'prop-types'
  * @returns {React.ReactElement} JSX.Element - physical activity chart
  */
 function Activity({ userActivity }) {
-  console.log(userActivity)
-  /**
-   *
-   * @param {string} value
-   * @returns chart legend "Poids" and "Calories brulées"
-   */
-
-  function legendValue(value) {
-    return <span className="dailyActivity__value">{value} </span>
-  }
+  const data = userActivity.map((item) => {
+    return { ...item, day: item.day.split('')[9] }
+  })
 
   return (
     <article className="dailyActivity">
@@ -36,12 +29,11 @@ function Activity({ userActivity }) {
 
       <ResponsiveContainer width="100%" height={320}>
         <BarChart
-          data={userActivity}
+          data={data}
           margin={{ top: 0, right: 0, left: 10, bottom: 50 }}
         >
           <CartesianGrid
             strokeDasharray="2 2"
-            stroke="#DEDEDE"
             horizontal={true}
             vertical={false}
           />
@@ -66,8 +58,7 @@ function Activity({ userActivity }) {
           />
           <YAxis
             yAxisId={1}
-            // @ts-ignore
-            ataKey="calories"
+            dataKey="calories"
             hide={true}
             domain={['dataMin - 100', 'dataMax + 100']}
           />
@@ -86,13 +77,11 @@ function Activity({ userActivity }) {
           />
 
           <Legend
-            layout="horizontal"
             verticalAlign="top"
             align="right"
             iconType="circle"
             iconSize={8}
             height={47}
-            formatter={legendValue}
           />
 
           <Bar
@@ -100,7 +89,7 @@ function Activity({ userActivity }) {
             dataKey="kilogram"
             fill="#282D30"
             barSize={7}
-            radius={[5, 5, 0, 0]}
+            radius={[3, 3, 0, 0]}
             unit=" kg"
             name="Poids (kg)"
           />
@@ -110,7 +99,7 @@ function Activity({ userActivity }) {
             dataKey="calories"
             fill="#E60000"
             barSize={7}
-            radius={[5, 5, 0, 0]}
+            radius={[3, 3, 0, 0]}
             unit=" Kcal"
             name="Calories brûlées (kCal)"
           />

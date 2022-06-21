@@ -12,8 +12,14 @@
     color: white;
     font-weight: 500;
     font-size: 24px;
+
+    &__active {
+      text-decoration: underline;
+    }
+
     &:hover {
       text-decoration: underline;
+      color: rgb(180, 180, 180);
     }
   }
 }

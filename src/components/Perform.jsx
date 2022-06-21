@@ -1,4 +1,3 @@
-//@ts-check
 import {
   RadarChart,
   PolarGrid,
@@ -27,25 +26,22 @@ function Perform({ userPerform }) {
     'Cardio',
   ]
 
-  for (let i = 0; i < 6; i++) {
-    userPerform[i].kind = kindName[i]
-  }
-
-  console.log(userPerform)
+  const data = userPerform.map((item) => {
+    return { ...item, kind: kindName[item.kind - 1] }
+  })
 
   return (
     <article className="perform">
       <ResponsiveContainer width="100%" height={263}>
-        <RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="75%">
+        <RadarChart data={data} cx="50%" cy="54%" outerRadius="70%">
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
             dataKey="kind"
             tickSize={10}
             tick={{
               fill: 'white',
-              fontSize: 10,
+              fontSize: 12,
               fontWeight: 500,
-              y: 200,
             }}
           />
           <Radar

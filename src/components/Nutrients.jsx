@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
  */
 
 function Nutrients({ userKeyData }) {
+  console.log(userKeyData)
   return (
     <>
       <NutrientCard

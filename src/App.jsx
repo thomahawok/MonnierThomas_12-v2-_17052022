@@ -9,6 +9,11 @@ import UserMocked from './pages/UserMocked'
 import SideBar from './components/SideBar'
 import Error from './pages/Error'
 
+/**
+ *
+ * @returns {React.ReactElement} JSX.Element - the user main page with API data
+ */
+
 function App() {
   return (
     <Router>

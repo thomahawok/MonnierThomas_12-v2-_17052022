@@ -1,13 +1,12 @@
-//@ts-check
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
+  getAllData,
   getUserData,
   getActivity,
   getAverageSession,
   getPerformance,
 } from '../services/service'
-
 import UserHello from '../components/UserHello'
 import Activity from '../components/Activity'
 import AverageSessions from '../components/AverageSessions'
@@ -22,36 +21,43 @@ import Loader from '../components/Loader'
  */
 
 function User() {
-  /**
-   *
-   * @param {{keyData: object, todayScore: number,  userFirstName: string}}  userData - The informations of the user
-   * @param {Object}  userData.keyData - The nutrients informations
-   * @param {number}  userData.todayScore - User score
-   * @param {string}  userData.userFirstName - User firstname
-   */
-
   const { id } = useParams()
   const [userData, setUserData] = useState([])
   const [userActivity, setUserActivity] = useState([])
   const [userAvergeSession, setUserAvergeSession] = useState([])
   const [userPerformance, setUserPerformance] = useState([])
-
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState([])
   useEffect(() => {
-    getUserData({ id }).then((data) =>
+    getUserData({ id }).then((data) => {
       setUserData({
         userFirstName: data.userInfos.firstName,
         keyData: data.keyData,
         todayScore: data.todayScore,
       })
-    )
-    getActivity({ id }).then((data) => setUserActivity(data))
-    getAverageSession({ id }).then((data) => setUserAvergeSession(data))
-    getPerformance({ id }).then((data) => setUserPerformance(data))
+      setLoading(false)
+    })
+    getActivity({ id }).then((data) => {
+      setUserActivity(data)
+      setLoading(false)
+    })
+    getAverageSession({ id }).then((data) => {
+      setUserAvergeSession(data)
+      setLoading(false)
+    })
+    getPerformance({ id }).then((data) => {
+      setUserPerformance(data)
+      setLoading(false)
+    })
+    getAllData({ id }).then((data) => {
+      setData(data)
+      setLoading(false)
+    })
   }, [id])
 
   return (
     <section className="containerUser">
-      {userData === [] || userData.userFirstName === undefined ? (
+      {loading || userData.userFirstName === undefined ? (
         <div className="userHello">
           <p>Chargement du prénom...</p>
           <Loader />
@@ -60,7 +66,7 @@ function User() {
         <UserHello userFirstName={userData.userFirstName} />
       )}
 
-      {userActivity.length === 0 ? (
+      {loading ? (
         <div className="dailyActivity">
           <p>Chargement du rapport d'activité quotidienne...</p>
           <Loader />
@@ -69,7 +75,7 @@ function User() {
         <Activity userActivity={userActivity} />
       )}
 
-      {userAvergeSession.length === 0 || userAvergeSession === undefined ? (
+      {loading || userAvergeSession === undefined ? (
         <div className="averageSessions">
           <p>Chargement des durées moyennes de sessions...</p>
           <Loader />
@@ -78,7 +84,7 @@ function User() {
         <AverageSessions userSessionAverage={userAvergeSession} />
       )}
 
-      {userData === [] || userData.todayScore === undefined ? (
+      {loading || userData.todayScore === undefined ? (
         <div className="score">
           <p>Chargement du score...</p>
           <Loader />
@@ -87,7 +93,7 @@ function User() {
         <Score userScore={userData.todayScore} />
       )}
 
-      {userData === [] || userData.keyData === undefined ? (
+      {loading || userData.keyData === undefined ? (
         <div className="nutrient">
           <p>Chargement des donnés d'alimentation...</p>
           <Loader />
@@ -96,7 +102,7 @@ function User() {
         <Nutrients userKeyData={userData.keyData} />
       )}
 
-      {userPerformance === [] || userPerformance.data === undefined ? (
+      {loading || userPerformance.data === undefined ? (
         <div className="perform">
           <p>Chargement des données de performances...</p>
           <Loader />
