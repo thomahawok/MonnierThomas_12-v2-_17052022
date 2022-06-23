@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSession">getAverageSession</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUserData">getUserData</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#useFetch">useFetch</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
                 
             </nav>
         </div>
@@ -89,8 +89,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//@ts-check
-import {
+            <pre class="prettyprint source linenums"><code>import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
@@ -118,25 +117,22 @@ function Perform({ userPerform }) {
     'Cardio',
   ]
 
-  for (let i = 0; i &lt; 6; i++) {
-    userPerform[i].kind = kindName[i]
-  }
-
-  console.log(userPerform)
+  const data = userPerform.map((item) => {
+    return { ...item, kind: kindName[item.kind - 1] }
+  })
 
   return (
     &lt;article className="perform">
       &lt;ResponsiveContainer width="100%" height={263}>
-        &lt;RadarChart data={userPerform} cx="50%" cy="50%" outerRadius="75%">
+        &lt;RadarChart data={data} cx="50%" cy="54%" outerRadius="70%">
           &lt;PolarGrid radialLines={false} />
           &lt;PolarAngleAxis
             dataKey="kind"
             tickSize={10}
             tick={{
               fill: 'white',
-              fontSize: 10,
+              fontSize: 12,
               fontWeight: 500,
-              y: 200,
             }}
           />
           &lt;Radar

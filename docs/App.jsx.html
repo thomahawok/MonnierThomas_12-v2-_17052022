@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> components/AverageSessions.jsx</title>
+  <title> App.jsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>components/AverageSessions.jsx</h1>
+                    <h1>App.jsx</h1>
                 </header>
                 
 
@@ -89,105 +89,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
-import PropTypes from 'prop-types'
+            <pre class="prettyprint source linenums"><code>//@ts-check
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './pages/Home'
+import User from './pages/User'
+import UserMocked from './pages/UserMocked'
+import SideBar from './components/SideBar'
+import Error from './pages/Error'
 
 /**
- * Component - LineChart Graph of session Longer
- * @param {object[]} userSessionAverage user’s average session data
- * @param {Number} userSessionAverage[].day Day of the week
- * @param {Number} userSessionAverage[].sessionLength Session duration
- * @returns {React.ReactElement} JSX.Element - average session chart
+ *
+ * @returns {React.ReactElement} JSX.Element - the user main page with API data
  */
 
-function AverageSessions({ userSessionAverage }) {
-  // Replace number day by good label
-  const weekdays = ['L ', 'M ', 'M ', 'J ', 'V ', 'S ', 'D ']
-  const data = userSessionAverage.map((item) => {
-    return { ...item, day: weekdays[item.day - 1] }
-  })
-
+function App() {
   return (
-    &lt;article className="averageSessions">
-      &lt;h2>Durée moyenne des sessions&lt;/h2>
-
-      &lt;ResponsiveContainer width="100%" height={263}>
-        &lt;LineChart
-          data={data}
-          margin={{
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          &lt;CartesianGrid vertical={false} horizontal={false} />
-
-          &lt;Line
-            type="natural"
-            dataKey="sessionLength"
-            scale="band"
-            stroke="white"
-            strokeWidth={2}
-            dot={false}
-            activeDot={{
-              fill: 'white',
-              strokeOpacity: '.5',
-              strokeWidth: '10',
-              r: 4,
-            }}
-            unit=" min"
-          />
-
-          &lt;XAxis
-            dataKey="day"
-            tick={{ fill: 'white', opacity: '.7' }}
-            tickLine={false}
-            tickMargin={5}
-            interval="preserveStartEnd"
-            axisLine={false}
-          />
-          &lt;YAxis hide={true} domain={['dataMin-20', 'dataMax+40']} />
-
-          &lt;Tooltip
-            itemStyle={{
-              color: 'black',
-              fontSize: 8,
-              fontWeight: 500,
-            }}
-            formatter={(value, name, unit) => [value, unit]}
-            labelStyle={{ display: 'none' }}
-            cursor={{
-              stroke: 'black',
-              strokeOpacity: 0.1,
-              strokeWidth: 60,
-              height: 263,
-            }}
-          />
-        &lt;/LineChart>
-      &lt;/ResponsiveContainer>
-    &lt;/article>
+    &lt;Router>
+      &lt;Header />
+      &lt;section className="elementsToDisplay">
+        &lt;SideBar />
+        &lt;Routes>
+          &lt;Route path="/" element={&lt;Home />} />
+          &lt;Route path="/User/:id" element={&lt;User />} />
+          &lt;Route path="/UserMocked/:id" element={&lt;UserMocked />} />
+          &lt;Route path="*" element={&lt;Error />} />
+        &lt;/Routes>
+      &lt;/section>
+    &lt;/Router>
   )
 }
 
-AverageSessions.propTypes = {
-  userSessionAverage: PropTypes.arrayOf(
-    PropTypes.shape({
-      day: PropTypes.number,
-      sessionLength: PropTypes.number,
-    })
-  ).isRequired,
-}
-
-export default AverageSessions
+export default App
 </code></pre>
         </article>
     </section>

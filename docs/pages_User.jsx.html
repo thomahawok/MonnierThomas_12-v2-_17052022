@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSession">getAverageSession</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUserData">getUserData</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#useFetch">useFetch</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
                 
             </nav>
         </div>
@@ -89,16 +89,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//@ts-check
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import {
-  getUserData,
-  getActivity,
-  getAverageSession,
-  getPerformance,
-} from '../services/service'
-
+            <pre class="prettyprint source linenums"><code>import { useParams } from 'react-router-dom'
+import { useFetch } from '../services/service'
 import UserHello from '../components/UserHello'
 import Activity from '../components/Activity'
 import AverageSessions from '../components/AverageSessions'
@@ -113,87 +105,100 @@ import Loader from '../components/Loader'
  */
 
 function User() {
-  /**
-   *
-   * @param {{keyData: object, todayScore: number,  userFirstName: string}}  userData - The informations of the user
-   * @param {Object}  userData.keyData - The nutrients informations
-   * @param {number}  userData.todayScore - User score
-   * @param {string}  userData.userFirstName - User firstname
-   */
-
   const { id } = useParams()
+  /*
   const [userData, setUserData] = useState([])
   const [userActivity, setUserActivity] = useState([])
   const [userAvergeSession, setUserAvergeSession] = useState([])
   const [userPerformance, setUserPerformance] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getUserData({ id }).then((data) =>
+    getUserData({ id }).then((data) => {
       setUserData({
         userFirstName: data.userInfos.firstName,
         keyData: data.keyData,
         todayScore: data.todayScore,
       })
-    )
-    getActivity({ id }).then((data) => setUserActivity(data))
-    getAverageSession({ id }).then((data) => setUserAvergeSession(data))
-    getPerformance({ id }).then((data) => setUserPerformance(data))
+      setLoading(false)
+    })
+    getActivity({ id }).then((data) => {
+      setUserActivity(data)
+      setLoading(false)
+    })
+    getAverageSession({ id }).then((data) => {
+      setUserAvergeSession(data)
+      setLoading(false)
+    })
+    getPerformance({ id }).then((data) => {
+      setUserPerformance(data)
+      setLoading(false)
+    })
   }, [id])
+  */
+  const userData = useFetch(`http://localhost:3000/user/${id}`)
+  const userActivity = useFetch(`http://localhost:3000/user/${id}/activity`)
+  const userAvergeSession = useFetch(
+    `http://localhost:3000/user/${id}/average-sessions`
+  )
+  const userPerformance = useFetch(
+    `http://localhost:3000/user/${id}/performance`
+  )
 
   return (
     &lt;section className="containerUser">
-      {userData === [] || userData.userFirstName === undefined ? (
+      {userData.isLoading || userData.data.userInfos.firstName === undefined ? (
         &lt;div className="userHello">
           &lt;p>Chargement du prénom...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;UserHello userFirstName={userData.userFirstName} />
+        &lt;UserHello userFirstName={userData.data.userInfos.firstName} />
       )}
 
-      {userActivity.length === 0 ? (
+      {userActivity.isLoading ? (
         &lt;div className="dailyActivity">
           &lt;p>Chargement du rapport d'activité quotidienne...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;Activity userActivity={userActivity} />
+        &lt;Activity userActivity={userActivity.data.sessions} />
       )}
 
-      {userAvergeSession.length === 0 || userAvergeSession === undefined ? (
+      {userAvergeSession.isLoading || userAvergeSession === undefined ? (
         &lt;div className="averageSessions">
           &lt;p>Chargement des durées moyennes de sessions...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;AverageSessions userSessionAverage={userAvergeSession} />
+        &lt;AverageSessions userSessionAverage={userAvergeSession.data.sessions} />
       )}
 
-      {userData === [] || userData.todayScore === undefined ? (
+      {userData.isLoading || userData.data.todayScore === undefined ? (
         &lt;div className="score">
           &lt;p>Chargement du score...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;Score userScore={userData.todayScore} />
+        &lt;Score userScore={userData.data.todayScore} />
       )}
 
-      {userData === [] || userData.keyData === undefined ? (
+      {userData.isLoading || userData.data.keyData === undefined ? (
         &lt;div className="nutrient">
           &lt;p>Chargement des donnés d'alimentation...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;Nutrients userKeyData={userData.keyData} />
+        &lt;Nutrients userKeyData={userData.data.keyData} />
       )}
 
-      {userPerformance === [] || userPerformance.data === undefined ? (
+      {userPerformance.isLoading || userPerformance.data === undefined ? (
         &lt;div className="perform">
           &lt;p>Chargement des données de performances...&lt;/p>
           &lt;Loader />
         &lt;/div>
       ) : (
-        &lt;Perform userPerform={userPerformance.data} />
+        &lt;Perform userPerform={userPerformance.data.data} />
       )}
     &lt;/section>
   )

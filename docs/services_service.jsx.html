@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSession">getAverageSession</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUserData">getUserData</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AverageSessions">AverageSessions</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#NutrientCard">NutrientCard</a></li><li><a href="global.html#Nutrients">Nutrients</a></li><li><a href="global.html#Perform">Perform</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#useFetch">useFetch</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#UserHello">UserHello</a></li><li><a href="global.html#UserMocked">UserMocked</a></li></ul></div>
                 
             </nav>
         </div>
@@ -90,101 +90,33 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>//@ts-expect-error
-import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 /**
- * get USER_MAIN_DATA from API
- * @async
- * @param {String} {id} - The user id.
- * @return {Promise&lt;UserInfos>} The data from the URL.
- */
-
-export async function getUserData({ id }) {
-  try {
-    const response = await axios.get(`http://localhost:3000/user/${id}`)
-    return response.data.data
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-/**User information
- * @typedef {Object} UserInfos
- * @param {String} firstName
- * @param {String} lastName
- * @param {Number} age
- */
-
-/**
- * get USER_ACTIVITY from API
+ * get data from API
  * async
- * @param {String} {id} - The user id.
- * @return {Promise&lt;UserActivity>} The data from the URL.
+ * @param {String} url The path to get data
+ * @returns  {Objet[]} The data from the URL.
  */
-export async function getActivity({ id }) {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/user/${id}/activity`
-    )
-    return response.data.data.sessions
-  } catch (error) {
-    console.error(error)
-  }
+
+export function useFetch(url) {
+  const [data, setData] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!url) return
+    async function fetchData() {
+      const response = await fetch(url)
+      const data = await response.json()
+      setData(data.data)
+      setLoading(false)
+    }
+    setLoading(true)
+    fetchData()
+  }, [url])
+
+  return { isLoading, data }
 }
-
-/**
- * User activity
- * @typedef {Object} UserActivity
- * @param {String} day
- * @param {Number} kilogram
- * @param {Number} calories
- */
-
-/**
- * get USER_AVERAGE_SESSIONS from API
- * async
- * @param {String} {id} - The user id.
- * @return {Promise&lt;UserAverageSessions>} The data from the URL.
- */
-export async function getAverageSession({ id }) {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/user/${id}/average-sessions`
-    )
-    return response.data.data.sessions
-  } catch (error) {
-    console.error(error)
-  }
-}
-/**
- * User average-sessions
- * @typedef {Object} UserAverageSessions
- * @param {Number} day
- * @param {Number} sessionLength
- */
-
-/**
- * get USER_PERFORMANCE from API
- * @param {String} {id} - The user id.
- * @return {Promise&lt;UserPerformance>} The data from the URL.
- */
-export async function getPerformance({ id }) {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/user/${id}/performance`
-    )
-    return response.data.data
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-/**
- * User performance
- * @typedef {Object} UserPerformance
- * @param {Number} value
- * @param {Number} kind
- */
 </code></pre>
         </article>
     </section>
