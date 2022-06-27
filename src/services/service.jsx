@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 
 /**
  * get data from API
- * async
  * @param {String} url The path to get data
  * @returns  {Objet[]} The data from the URL.
  */
@@ -15,10 +14,15 @@ export function useFetch(url) {
   useEffect(() => {
     if (!url) return
     async function fetchData() {
-      const response = await fetch(url)
-      const data = await response.json()
-      setData(data.data)
-      setLoading(false)
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        setData(data.data)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
     }
     setLoading(true)
     fetchData()

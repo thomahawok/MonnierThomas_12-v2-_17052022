@@ -15,36 +15,6 @@ import Loader from '../components/Loader'
 
 function User() {
   const { id } = useParams()
-  /*
-  const [userData, setUserData] = useState([])
-  const [userActivity, setUserActivity] = useState([])
-  const [userAvergeSession, setUserAvergeSession] = useState([])
-  const [userPerformance, setUserPerformance] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getUserData({ id }).then((data) => {
-      setUserData({
-        userFirstName: data.userInfos.firstName,
-        keyData: data.keyData,
-        todayScore: data.todayScore,
-      })
-      setLoading(false)
-    })
-    getActivity({ id }).then((data) => {
-      setUserActivity(data)
-      setLoading(false)
-    })
-    getAverageSession({ id }).then((data) => {
-      setUserAvergeSession(data)
-      setLoading(false)
-    })
-    getPerformance({ id }).then((data) => {
-      setUserPerformance(data)
-      setLoading(false)
-    })
-  }, [id])
-  */
   const userData = useFetch(`http://localhost:3000/user/${id}`)
   const userActivity = useFetch(`http://localhost:3000/user/${id}/activity`)
   const userAvergeSession = useFetch(
