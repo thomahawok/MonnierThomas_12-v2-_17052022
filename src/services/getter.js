@@ -40,11 +40,6 @@ export function GetDatas(id) {
     })
   }, [id])
 
-  console.log(userData)
-  console.log(userActivity)
-  console.log(userAverageSession)
-  console.log(userPerformance)
-
   return {
     userData,
     userActivity,
@@ -57,18 +52,3 @@ export function GetDatas(id) {
     userPerformanceLoading,
   }
 }
-/*
-const userFirstnameData = userData.data.userInfos.firstName
-const userScoreData = userData.data.todayScore
-const userKeyData = userData.data.keyData
-
-const userActivityData = userActivity.data.sessions
-const userAverageSessionData = userAverageSession.data.sessions
-
-const userPerformanceData = userPerformance.data.data
-
-const userDataLoading = userData.isLoading
-const userActivityLoading = userActivity.isLoading
-const userAverageSessionLoading = userAverageSession.isLoading
-const userPerformanceLoading = userPerformance.isLoading
-*/
