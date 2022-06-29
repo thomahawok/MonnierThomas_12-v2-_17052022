@@ -20,22 +20,22 @@ export function GetDatas(id) {
   useEffect(() => {
     getUserData({ id }).then((data) => {
       setUserData({
-        firstName: data.userInfos.firstName,
-        userKey: data.keyData,
-        userScore: data.todayScore,
+        firstName: data.data.userInfos.firstName,
+        userKey: data.data.keyData,
+        userScore: data.data.todayScore,
       })
       setUserDataLoading(false)
     })
     getActivity({ id }).then((data) => {
-      setUserActivity(data)
+      setUserActivity(data.data.sessions)
       setUserActivityLoading(false)
     })
     getAverageSession({ id }).then((data) => {
-      setUserAverageSession(data)
+      setUserAverageSession(data.data.sessions)
       setUserAverageSessionLoading(false)
     })
     getPerformance({ id }).then((data) => {
-      setUserPerformance(data.data)
+      setUserPerformance(data.data.data)
       setUserPerformanceLoading(false)
     })
   }, [id])
