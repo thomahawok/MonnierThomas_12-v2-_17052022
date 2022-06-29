@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
  * @returns {React.ReactElement} JSX.Element - Graph of score
  */
 function Score({ userScore }) {
+  console.log(userScore)
   const scorePercentage = [{ value: userScore * 100 }]
   const newScore = userScore * 100
 

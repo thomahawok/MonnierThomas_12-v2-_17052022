@@ -1,32 +1,64 @@
-//@ts-expect-error
-import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 /**
- * get data from API
- * @param {String} url The path to get data
- * @returns  {Objet[]} The data from the URL.
+ * get USER_MAIN_DATA from API
+ * @param {Number} id
+ * @returns Object
  */
 
-export function useFetch(url) {
-  const [data, setData] = useState([])
-  const [isLoading, setLoading] = useState(true)
+export async function getUserData({ id }) {
+  try {
+    const response = await axios.get(`http://localhost:3000/user/${id}`)
+    return response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-  useEffect(() => {
-    if (!url) return
-    async function fetchData() {
-      try {
-        const response = await fetch(url)
-        const data = await response.json()
-        setData(data.data)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    setLoading(true)
-    fetchData()
-  }, [url])
+/**
+ * get USER_ACTIVITY from API
+ * @param {Number} id
+ * @returns Object
+ */
+export async function getActivity({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/activity`
+    )
+    return response.data.data.sessions
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-  return { isLoading, data }
+/**
+ * get USER_AVERAGE_SESSIONS from API
+ * @param {Number} id
+ * @returns Object
+ */
+export async function getAverageSession({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/average-sessions`
+    )
+    return response.data.data.sessions
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+/**
+ * get USER_PERFORMANCE from API
+ * @param {Number} id
+ * @returns Object
+ */
+export async function getPerformance({ id }) {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/user/${id}/performance`
+    )
+    return response.data.data
+  } catch (error) {
+    console.error(error)
+  }
 }

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../services/service'
+import { useFetch, dataFormatting, GetDatas } from '../services/getter'
 import UserHello from '../components/UserHello'
 import Activity from '../components/Activity'
 import AverageSessions from '../components/AverageSessions'
@@ -15,69 +15,96 @@ import Loader from '../components/Loader'
 
 function User() {
   const { id } = useParams()
-  const userData = useFetch(`http://localhost:3000/user/${id}`)
-  const userActivity = useFetch(`http://localhost:3000/user/${id}/activity`)
-  const userAvergeSession = useFetch(
-    `http://localhost:3000/user/${id}/average-sessions`
-  )
-  const userPerformance = useFetch(
-    `http://localhost:3000/user/${id}/performance`
-  )
+
+  const {
+    userData,
+    userActivity,
+    userAverageSession,
+    userPerformance,
+    userDataLoading,
+    userActivityLoading,
+    userAverageSessionLoading,
+    userPerformanceLoading,
+  } = GetDatas(id)
 
   return (
     <section className="containerUser">
-      {userData.isLoading || userData.data.userInfos.firstName === undefined ? (
+      {userDataLoading ? (
         <div className="userHello">
           <p>Chargement du prénom...</p>
           <Loader />
         </div>
+      ) : userData.firstName === undefined ? (
+        <div className="userHello">
+          <p>Name no available</p>
+        </div>
       ) : (
-        <UserHello userFirstName={userData.data.userInfos.firstName} />
+        <UserHello userFirstName={userData.firstName} />
       )}
 
-      {userActivity.isLoading ? (
+      {userActivityLoading ? (
         <div className="dailyActivity">
           <p>Chargement du rapport d'activité quotidienne...</p>
           <Loader />
         </div>
+      ) : userActivity === undefined ? (
+        <div className="dailyActivity">
+          <p>Activity no available</p>
+        </div>
       ) : (
-        <Activity userActivity={userActivity.data.sessions} />
+        <Activity userActivity={userActivity} />
       )}
 
-      {userAvergeSession.isLoading || userAvergeSession === undefined ? (
+      {userAverageSessionLoading || userAverageSession === undefined ? (
         <div className="averageSessions">
           <p>Chargement des durées moyennes de sessions...</p>
           <Loader />
         </div>
+      ) : userAverageSession === undefined ? (
+        <div className="averageSessions">
+          <p>Average sessions no available</p>
+        </div>
       ) : (
-        <AverageSessions userSessionAverage={userAvergeSession.data.sessions} />
+        <AverageSessions userSessionAverage={userAverageSession} />
       )}
 
-      {userData.isLoading || userData.data.todayScore === undefined ? (
+      {userDataLoading || userData.userScore === undefined ? (
         <div className="score">
           <p>Chargement du score...</p>
           <Loader />
         </div>
+      ) : userData.userScore === undefined ? (
+        <div className="score">
+          <p>Score no available</p>
+        </div>
       ) : (
-        <Score userScore={userData.data.todayScore} />
+        <Score userScore={userData.userScore} />
       )}
 
-      {userData.isLoading || userData.data.keyData === undefined ? (
+      {userDataLoading || userData.userKey === undefined ? (
         <div className="nutrient">
           <p>Chargement des donnés d'alimentation...</p>
           <Loader />
         </div>
+      ) : userData.userKey === undefined ? (
+        <div className="nutrient">
+          <p>Nutrients no available</p>
+        </div>
       ) : (
-        <Nutrients userKeyData={userData.data.keyData} />
+        <Nutrients userKeyData={userData.userKey} />
       )}
 
-      {userPerformance.isLoading || userPerformance.data === undefined ? (
+      {userPerformanceLoading || userPerformance === undefined ? (
         <div className="perform">
           <p>Chargement des données de performances...</p>
           <Loader />
         </div>
+      ) : userPerformance === undefined ? (
+        <div className="perform">
+          <p>Performances no available</p>
+        </div>
       ) : (
-        <Perform userPerform={userPerformance.data.data} />
+        <Perform userPerform={userPerformance} />
       )}
     </section>
   )
